@@ -2,15 +2,27 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    public static InputManager Instance;
+
+    public bool MoveUp { get; private set; }
+    public bool MoveDown { get; private set; }
+    public bool MoveRight { get; private set; }
+    public bool MoveLeft { get; private set; }
+
+    private void Awake()
     {
-        
+        Instance = this; // setup singleton
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+
+        MoveUp = Input.GetKey(KeyCode.W);
+        MoveDown = Input.GetKey(KeyCode.S);
+        MoveRight = Input.GetKey(KeyCode.D);
+        MoveLeft = Input.GetKey(KeyCode.A);
+
     }
 }
