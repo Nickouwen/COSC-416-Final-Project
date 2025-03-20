@@ -2,23 +2,27 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    // These will need to be moved into a separate script; This is just for figuring things out.
-    public Transform platformSpawnRef;
-    public GameObject platformPrefab;
-    public Rigidbody rb;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    public static InputManager Instance;
+
+    public bool MoveUp { get; private set; }
+    public bool MoveDown { get; private set; }
+    public bool MoveRight { get; private set; }
+    public bool MoveLeft { get; private set; }
+
+    private void Awake()
     {
-        
+        Instance = this; // setup singleton
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Space key was pressed");
-            Platforms.SpawnPlatform(platformPrefab, platformSpawnRef, 10);
-        }
+
+        MoveUp = Input.GetKey(KeyCode.W);
+        MoveDown = Input.GetKey(KeyCode.S);
+        MoveRight = Input.GetKey(KeyCode.D);
+        MoveLeft = Input.GetKey(KeyCode.A);
+
     }
 }
