@@ -19,10 +19,10 @@ public class InputManager : MonoBehaviour
     void Update()
     {
 
-        MoveUp = Input.GetKey(KeyCode.W);
-        MoveDown = Input.GetKey(KeyCode.S);
-        MoveRight = Input.GetKey(KeyCode.D);
-        MoveLeft = Input.GetKey(KeyCode.A);
+        MoveUp = Input.GetKeyDown(KeyCode.W);
+        MoveDown = Input.GetKeyDown(KeyCode.S);
+        MoveRight = Input.GetKeyDown(KeyCode.D);
+        MoveLeft = Input.GetKeyDown(KeyCode.A);
 
     }
 }

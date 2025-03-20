@@ -468,6 +468,7 @@ GameObject:
   - component: {fileID: 1464156827}
   - component: {fileID: 1464156829}
   - component: {fileID: 1464156828}
+  - component: {fileID: 1464156830}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -526,8 +527,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130637488908ae14684b158ce374db60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRb: {fileID: 1464156830}
   player: {fileID: 1464156826}
   bounceDuration: 0.15
+--- !u!54 &1464156830
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464156826}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1001 &1625543383
 PrefabInstance:
   m_ObjectHideFlags: 0

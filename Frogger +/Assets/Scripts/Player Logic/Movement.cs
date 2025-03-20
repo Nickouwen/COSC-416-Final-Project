@@ -4,6 +4,7 @@ using DG.Tweening;
 public class Movement : MonoBehaviour
 {
     private bool isPlayerMoving = false;
+    public Rigidbody playerRb;
     public GameObject player;
     // how long bounce animation is
     public float bounceDuration = .15f;
@@ -40,5 +41,6 @@ public class Movement : MonoBehaviour
     void MovePlayer(Vector3 direction){
         isPlayerMoving = true;
         player.transform.DOMove(player.transform.position + direction, bounceDuration).SetEase(Ease.OutBounce).OnComplete(() => isPlayerMoving = false);
+        player.transform.DOJump(player.transform.position + direction, 1, 1, bounceDuration, false).OnComplete(() => isPlayerMoving = false);
     }
 }
