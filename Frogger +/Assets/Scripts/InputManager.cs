@@ -20,11 +20,5 @@ public class InputManager : MonoBehaviour
             Debug.Log("Space key was pressed");
             Platforms.SpawnPlatform(platformPrefab, platformSpawnRef, 10);
         }
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            LeanTween.moveX(rb.gameObject, rb.position.x + 1, 2);
-        }
-
     }
 }
