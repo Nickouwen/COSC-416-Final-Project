@@ -20,10 +20,10 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        MoveUp = Input.GetKeyDown(KeyCode.W);
-        MoveDown = Input.GetKeyDown(KeyCode.S);
-        MoveRight = Input.GetKeyDown(KeyCode.D);
-        MoveLeft = Input.GetKeyDown(KeyCode.A);
+        MoveUp = Input.GetKey(KeyCode.W);
+        MoveDown = Input.GetKey(KeyCode.S);
+        MoveRight = Input.GetKey(KeyCode.D);
+        MoveLeft = Input.GetKey(KeyCode.A);
         Respawn = Input.GetKeyDown(KeyCode.R);
         SpawnBoat = Input.GetKeyDown(KeyCode.Space);
     }
