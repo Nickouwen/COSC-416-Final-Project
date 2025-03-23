@@ -7,6 +7,11 @@ TagManager:
   - Shield
   - Boat
   - Water
+  - Left-Wall
+  - Right-Wall
+  - ship
+  - Water
+  - Ground
   layers:
   - Default
   - TransparentFX

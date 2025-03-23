@@ -5,7 +5,6 @@ public class InputManager : MonoBehaviour
 {
 
     public static InputManager Instance;
-
     public bool MoveUp { get; private set; }
     public bool MoveDown { get; private set; }
     public bool MoveRight { get; private set; }
@@ -13,6 +12,7 @@ public class InputManager : MonoBehaviour
     public bool Respawn { get; private set; }
     public bool SpawnBoat { get; private set; }
     public bool Blocking { get; private set; }
+    public bool SpawnObstacles { get; private set; }
 
     private void Awake()
     {
@@ -22,12 +22,13 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        MoveUp = Input.GetKeyDown(KeyCode.W);
-        MoveDown = Input.GetKeyDown(KeyCode.S);
-        MoveRight = Input.GetKeyDown(KeyCode.D);
-        MoveLeft = Input.GetKeyDown(KeyCode.A);
+        MoveUp = Input.GetKey(KeyCode.W);
+        MoveDown = Input.GetKey(KeyCode.S);
+        MoveRight = Input.GetKey(KeyCode.D);
+        MoveLeft = Input.GetKey(KeyCode.A);
         Respawn = Input.GetKeyDown(KeyCode.R);
         SpawnBoat = Input.GetKeyDown(KeyCode.Space);
         Blocking = Input.GetKey(KeyCode.LeftShift);
+        SpawnObstacles = Input.GetKeyDown(KeyCode.Space);
     }
 }

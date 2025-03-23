@@ -42,11 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c4fa13fb98ec7745bab512cc6b3d51c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c4fa13fb98ec7745bab512cc6b3d51c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8c4fa13fb98ec7745bab512cc6b3d51c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -63,6 +63,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8c4fa13fb98ec7745bab512cc6b3d51c, type: 3}
       propertyPath: m_Name
       value: ship-cargo-c
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8c4fa13fb98ec7745bab512cc6b3d51c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8c4fa13fb98ec7745bab512cc6b3d51c, type: 3}
+      propertyPath: m_TagString
+      value: ship
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -99,8 +107,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.9172027, y: 1.384625, z: 10.548719}
-  m_Center: {x: 0, y: 0.6923125, z: 0}
+  m_Size: {x: 3.9172027, y: 0.34615624, z: 10.548719}
+  m_Center: {x: 0, y: 0.34615624, z: 0}
 --- !u!54 &2894108186979460040
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126,5 +134,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 124
   m_CollisionDetection: 0
