@@ -5,6 +5,8 @@ public class Movement : MonoBehaviour
 {
     private bool isPlayerMoving = false;
     public Rigidbody playerRb;
+    private bool onLeftWall = false;
+    private bool onRightWall = false;
     public GameObject player;
     // how long bounce animation is
     public float bounceDuration = .15f;
@@ -27,14 +29,31 @@ public class Movement : MonoBehaviour
             {
                 MovePlayer(Vector3.forward*-1);
             }
-            if(InputManager.Instance.MoveRight)
+            if(InputManager.Instance.MoveRight && !onRightWall)
             {
+                onLeftWall = false;
                 MovePlayer(Vector3.right);
             }
-            if(InputManager.Instance.MoveLeft)
+            if(InputManager.Instance.MoveLeft && !onLeftWall)
             {
+                onRightWall = false;
                 MovePlayer(Vector3.left);
             }
+        }
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Left-Wall"))
+        {
+            onLeftWall = true;
+        }
+        else if (collision.gameObject.CompareTag("Right-Wall"))
+        {
+            onRightWall = true;
+        }
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            GameManager.Instance.Respawn(player, GameManager.Instance.playerSpawn);
         }
     }
     // Moves player only when the previous animation is over

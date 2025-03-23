@@ -13,6 +13,17 @@ public class SmoothCameraFollow : MonoBehaviour
         #endregion
 
         #region Unity callbacks
+        void Update()
+        {
+            if (target == null)
+            {
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
+                {
+                    target = player.transform;
+                }
+            }
+        }
         private void LateUpdate()
         {
             Vector3 targetPosition = target.position + _offset;
