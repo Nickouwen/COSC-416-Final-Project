@@ -51,6 +51,10 @@ public class Movement : MonoBehaviour
         {
             onRightWall = true;
         }
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            GameManager.Instance.Respawn(player, GameManager.Instance.playerSpawn);
+        }
     }
     // Moves player only when the previous animation is over
     void MovePlayer(Vector3 direction){

@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private int BaseBoatSpeed = 10;
+    [SerializeField] private int boatSpawnInterval = 10;
 
     // Game objects to spawn & spawn points
     public GameObject playerPrefab;
@@ -14,12 +15,14 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject leftWall;
     public GameObject rightWall;
+    private float timeSince = 0f;
+
 
     public static GameManager Instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        Instance = this; // setup singleton
     }
 
     // Update is called once per frame
@@ -34,14 +37,22 @@ public class GameManager : MonoBehaviour
         {
             SpawnPlatform(boatPrefab, boatSpawnRight, boatSpawnLeft, BaseBoatSpeed);
         }
+        if (timeSince > boatSpawnInterval)
+        {
+            SpawnPlatform(boatPrefab, boatSpawnRight, boatSpawnLeft, BaseBoatSpeed);
+            timeSince = 0;
+        }
+        timeSince += Time.deltaTime;
     }
 
-    public static void Respawn(GameObject playerPrefab, Transform spawnPoint)
+    public void Respawn(GameObject playerPrefab, Transform spawnPoint)
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Destroy(player);
-        Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject oldPlayer = GameObject.FindGameObjectWithTag("Player");
+        GameObject newPlayer = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
+        player = newPlayer;
+        Destroy(oldPlayer);
     }
+
 
     public void SpawnPlatform(GameObject platformPrefab, Transform[] spawnPointsRight, Transform[] spawnPointsLeft, float velocity)
     {
@@ -51,7 +62,7 @@ public class GameManager : MonoBehaviour
             Physics.IgnoreCollision(leftWall.GetComponent<Collider>(), platform.GetComponent<Collider>());
             Physics.IgnoreCollision(rightWall.GetComponent<Collider>(), platform.GetComponent<Collider>());
             platform.GetComponent<Rigidbody>().linearVelocity = new Vector3(-velocity, 0, 0);
-            Destroy(platform, 10);
+            Destroy(platform, 30);
         }
 
         for(int i = 0; i < spawnPointsLeft.Length; i++)
@@ -60,7 +71,7 @@ public class GameManager : MonoBehaviour
             Physics.IgnoreCollision(leftWall.GetComponent<Collider>(), platform.GetComponent<Collider>());
             Physics.IgnoreCollision(rightWall.GetComponent<Collider>(), platform.GetComponent<Collider>());
             platform.GetComponent<Rigidbody>().linearVelocity = new Vector3(velocity, 0, 0);
-            Destroy(platform, 10);
+            Destroy(platform, 30);
         }
 
         /* GameObject platform = Instantiate(platformPrefab, spawnPoint.position, spawnPoint.rotation);
