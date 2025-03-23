@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
     // Game objects to spawn & spawn points
     public GameObject playerPrefab;
     public GameObject boatPrefab;
-    public Transform boatSpawn;
+    public Transform[] boatSpawnRight;
+
+    public Transform[] boatSpawnLeft;
     public Transform playerSpawn;
     public GameObject player;
     public GameObject leftWall;
@@ -30,7 +32,7 @@ public class GameManager : MonoBehaviour
 
         if (InputManager.Instance.SpawnBoat)
         {
-            SpawnPlatform(boatPrefab, boatSpawn, BaseBoatSpeed);
+            SpawnPlatform(boatPrefab, boatSpawnRight, boatSpawnLeft, BaseBoatSpeed);
         }
     }
 
@@ -41,13 +43,39 @@ public class GameManager : MonoBehaviour
         Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 
-    public void SpawnPlatform(GameObject platformPrefab, Transform spawnPoint, float velocity)
+    public void SpawnPlatform(GameObject platformPrefab, Transform[] spawnPointsRight, Transform[] spawnPointsLeft, float velocity)
     {
-        GameObject platform = Instantiate(platformPrefab, spawnPoint.position, spawnPoint.rotation);
+        for(int i = 0; i < spawnPointsRight.Length; i++)
+        {
+            GameObject platform = Instantiate(platformPrefab, spawnPointsRight[i].position, spawnPointsRight[i].rotation);
+            Physics.IgnoreCollision(leftWall.GetComponent<Collider>(), platform.GetComponent<Collider>());
+            Physics.IgnoreCollision(rightWall.GetComponent<Collider>(), platform.GetComponent<Collider>());
+            platform.GetComponent<Rigidbody>().linearVelocity = new Vector3(-velocity, 0, 0);
+            Destroy(platform, 10);
+        }
+
+        for(int i = 0; i < spawnPointsLeft.Length; i++)
+        {
+            GameObject platform = Instantiate(platformPrefab, spawnPointsLeft[i].position, spawnPointsLeft[i].rotation);
+            Physics.IgnoreCollision(leftWall.GetComponent<Collider>(), platform.GetComponent<Collider>());
+            Physics.IgnoreCollision(rightWall.GetComponent<Collider>(), platform.GetComponent<Collider>());
+            platform.GetComponent<Rigidbody>().linearVelocity = new Vector3(velocity, 0, 0);
+            Destroy(platform, 10);
+        }
+
+        /* GameObject platform = Instantiate(platformPrefab, spawnPoint.position, spawnPoint.rotation);
         // ignore collisions with the walls only
         Physics.IgnoreCollision(leftWall.GetComponent<Collider>(), platform.GetComponent<Collider>());
         Physics.IgnoreCollision(rightWall.GetComponent<Collider>(), platform.GetComponent<Collider>());
-        platform.GetComponent<Rigidbody>().linearVelocity = new Vector3(velocity, 0, 0);
+        if (spawnPoint.position.x < -20)
+        {
+            platform.GetComponent<Rigidbody>().linearVelocity = new Vector3(-velocity, 0, 0);
+        }
+        else if (spawnPoint.position.x > -20)
+        {
+            platform.GetComponent<Rigidbody>().linearVelocity = new Vector3(velocity, 0, 0);
+        }
+        else
         Destroy(platform, 10);
-    }
+ */    }
 }
