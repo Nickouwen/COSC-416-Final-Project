@@ -4,13 +4,16 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private int BaseBoatSpeed = 10;
     [SerializeField] private int boatSpawnInterval = 10;
+    [SerializeField] private int obstacleSpeed = 10;
 
     // Game objects to spawn & spawn points
     public GameObject playerPrefab;
     public GameObject boatPrefab;
+    public GameObject[] obstaclePrefabs;
     public Transform[] boatSpawnRight;
-
     public Transform[] boatSpawnLeft;
+    public Transform[] obstacleSpawnRight;
+    public Transform[] obstacleSpawnLeft;
     public Transform playerSpawn;
     public GameObject player;
     public GameObject leftWall;
@@ -33,6 +36,11 @@ public class GameManager : MonoBehaviour
             Respawn(playerPrefab, playerSpawn);
         }
 
+        if (InputManager.Instance.SpawnObstacles)
+        {
+            SpawnObstacles(obstaclePrefabs, obstacleSpawnRight, obstacleSpawnLeft, obstacleSpeed);
+        }
+
         if (InputManager.Instance.SpawnBoat)
         {
             SpawnPlatform(boatPrefab, boatSpawnRight, boatSpawnLeft, BaseBoatSpeed);
@@ -53,6 +61,29 @@ public class GameManager : MonoBehaviour
         Destroy(oldPlayer);
     }
 
+    // Spawns obstacles at designated spawn points but gives a random car obstacle out of the array
+    public void SpawnObstacles(GameObject[] obstaclePrefabs, Transform[] spawnPointsRight, Transform[] spawnPointsLeft, float velocity)
+    {
+        int randomIndex = Random.Range(0, obstaclePrefabs.Length);
+        for (int i = 0; i < spawnPointsRight.Length; i++)
+        {
+            GameObject obstacle = Instantiate(obstaclePrefabs[randomIndex], spawnPointsRight[i].position, spawnPointsRight[i].rotation);
+            Physics.IgnoreCollision(leftWall.GetComponent<Collider>(), obstacle.GetComponent<Collider>());
+            Physics.IgnoreCollision(rightWall.GetComponent<Collider>(), obstacle.GetComponent<Collider>());
+            obstacle.GetComponent<Rigidbody>().linearVelocity = new Vector3(-velocity, 0, 0);
+            Destroy(obstacle, 30);
+        }
+
+        randomIndex = Random.Range(0, obstaclePrefabs.Length);
+        for (int i = 0; i < spawnPointsLeft.Length; i++)
+        {
+            GameObject obstacle = Instantiate(obstaclePrefabs[randomIndex], spawnPointsLeft[i].position, spawnPointsLeft[i].rotation);
+            Physics.IgnoreCollision(leftWall.GetComponent<Collider>(), obstacle.GetComponent<Collider>());
+            Physics.IgnoreCollision(rightWall.GetComponent<Collider>(), obstacle.GetComponent<Collider>());
+            obstacle.GetComponent<Rigidbody>().linearVelocity = new Vector3(velocity, 0, 0);
+            Destroy(obstacle, 30);
+        }
+    }
 
     public void SpawnPlatform(GameObject platformPrefab, Transform[] spawnPointsRight, Transform[] spawnPointsLeft, float velocity)
     {
