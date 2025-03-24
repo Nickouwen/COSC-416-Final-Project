@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
 
 
     public static GameManager Instance;
+    private void Awake()
+    {
+        DisableSettingsMenu();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
