@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     // Game objects to spawn & spawn points
     public GameObject playerPrefab;
     public GameObject boatPrefab;
+    public GameObject settingsMenu;
     public GameObject[] obstaclePrefabs;
     public Transform[] boatSpawnRight;
     public Transform[] boatSpawnLeft;
@@ -19,9 +20,16 @@ public class GameManager : MonoBehaviour
     public GameObject leftWall;
     public GameObject rightWall;
     private float timeSince = 0f;
+    private bool settingsOpen;
+
+    public bool IsSettingsOpen => settingsOpen;
 
 
     public static GameManager Instance;
+    private void Awake()
+    {
+        DisableSettingsMenu();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -51,6 +59,31 @@ public class GameManager : MonoBehaviour
             timeSince = 0;
         }
         timeSince += Time.deltaTime;
+        if (InputManager.Instance.ToggleSettings)
+        {
+            if (settingsOpen) DisableSettingsMenu();
+            else EnableSettingsMenu();
+        }
+    }
+
+
+
+    public void EnableSettingsMenu()
+    {
+        Time.timeScale = 0f;
+        settingsMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        settingsOpen = true;
+    }
+
+    public void DisableSettingsMenu()
+    {
+        Time.timeScale = 1f;
+        settingsMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        settingsOpen = false;
     }
 
     public void Respawn(GameObject playerPrefab, Transform spawnPoint)

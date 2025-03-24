@@ -12,6 +12,7 @@ TagManager:
   - ship
   - Water
   - Ground
+  - Turret
   layers:
   - Default
   - TransparentFX
