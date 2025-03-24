@@ -51,6 +51,11 @@ public class Movement : MonoBehaviour
         {
             GameManager.Instance.Respawn();
         }
+        else if (collision.gameObject.CompareTag("EndGate"))
+        {
+            GameManager.Instance.IncrementScore();
+            GameManager.Instance.Respawn();
+        }
         else if (collision.gameObject.CompareTag("Left-Wall"))
         {
             onLeftWall = true;
