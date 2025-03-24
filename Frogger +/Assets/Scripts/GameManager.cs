@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
     public Transform playerSpawn;
     public GameObject player;
     public GameObject settingsMenu;
-
+    public ScoreCounterUI scoreCounter;
+    
+    private int score;
     private bool settingsOpen;
 
     public bool IsSettingsOpen => settingsOpen;
@@ -36,6 +38,11 @@ public class GameManager : MonoBehaviour
         {
             Respawn();
         }
+    }
+    public void IncrementScore()
+    {
+        score++;
+        scoreCounter.UpdateScore(score);
     }
     public void EnableSettingsMenu()
         {
