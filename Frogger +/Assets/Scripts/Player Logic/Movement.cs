@@ -43,7 +43,15 @@ public class Movement : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Left-Wall"))
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            GameManager.Instance.Respawn();
+        }
+        else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            GameManager.Instance.Respawn();
+        }
+        else if (collision.gameObject.CompareTag("Left-Wall"))
         {
             onLeftWall = true;
         }
@@ -51,15 +59,15 @@ public class Movement : MonoBehaviour
         {
             onRightWall = true;
         }
-        if (collision.gameObject.CompareTag("Water"))
-        {
-            GameManager.Instance.Respawn(player, GameManager.Instance.playerSpawn);
-        }
     }
     // Moves player only when the previous animation is over
-    void MovePlayer(Vector3 direction){
-        isPlayerMoving = true;
-        player.transform.DOMove(player.transform.position + direction, bounceDuration).SetEase(Ease.OutBounce).OnComplete(() => isPlayerMoving = false);
-        player.transform.DOJump(player.transform.position + direction, 1, 1, bounceDuration, false).OnComplete(() => isPlayerMoving = false);
+    void MovePlayer(Vector3 direction)
+    {
+        if (player != null)
+        {
+            isPlayerMoving = true;
+            player.transform.DOMove(player.transform.position + direction, bounceDuration).SetEase(Ease.OutBounce).OnComplete(() => isPlayerMoving = false);
+            player.transform.DOJump(player.transform.position + direction, 1, 1, bounceDuration, false).OnComplete(() => isPlayerMoving = false);
+        }
     }
 }
