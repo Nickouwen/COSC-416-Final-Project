@@ -688,7 +688,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 802107221}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1850188363}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: DisableSettingsMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &802107221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,7 +921,7 @@ GameObject:
   - component: {fileID: 1051024468}
   - component: {fileID: 1051024467}
   m_Layer: 5
-  m_Name: Restart
+  m_Name: RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2042,6 +2054,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1850188363 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2104063463763298613, guid: b9f67be21eded4fb1917e381d9346c9b, type: 3}
+  m_PrefabInstance: {fileID: 1945023177673261769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b88b8686c7159b4f93c5fc8f43d46e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1858800472
 GameObject:
   m_ObjectHideFlags: 0
