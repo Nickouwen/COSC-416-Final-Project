@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
     public bool SpawnBoat { get; private set; }
     public bool Blocking { get; private set; }
     public bool SpawnObstacles { get; private set; }
+    public bool ToggleSettings { get; private set; }
 
     private void Awake()
     {
@@ -30,5 +31,6 @@ public class InputManager : MonoBehaviour
         SpawnBoat = Input.GetKeyDown(KeyCode.Space);
         Blocking = Input.GetKey(KeyCode.LeftShift);
         SpawnObstacles = Input.GetKeyDown(KeyCode.Space);
+        ToggleSettings = Input.GetKeyDown(KeyCode.P);
     }
 }
