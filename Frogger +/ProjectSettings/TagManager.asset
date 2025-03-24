@@ -9,6 +9,7 @@ TagManager:
   - ship
   - Water
   - Ground
+  - Obstacle
   layers:
   - Default
   - TransparentFX
