@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public Transform playerSpawn;
     public GameObject player;
+    public GameObject settingsMenu;
+
+    private bool settingsOpen;
+
+    public bool IsSettingsOpen => settingsOpen;
 
 
 
@@ -31,6 +36,23 @@ public class GameManager : MonoBehaviour
         {
             Respawn();
         }
+    }
+    public void EnableSettingsMenu()
+        {
+            Time.timeScale = 0f;
+            settingsMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            settingsOpen = true;
+        }
+
+    public void DisableSettingsMenu()
+    {
+        Time.timeScale = 1f;
+        settingsMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        settingsOpen = false;
     }
 
     public void Respawn()
