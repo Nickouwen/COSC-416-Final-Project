@@ -26,15 +26,15 @@ public class PlatformController : MonoBehaviour
     {
         return speed;
     }
-    public bool getRightToLeft()
+    public int getRightToLeft()
     {
         if (rightToLeft)
         {
-            return true;
+            return 1;
         }
         else
         {
-            return false;
+            return -1;
         }
     }
 

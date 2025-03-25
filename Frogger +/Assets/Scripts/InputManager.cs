@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour
         MoveDown = Input.GetKey(KeyCode.S);
         MoveRight = Input.GetKey(KeyCode.D);
         MoveLeft = Input.GetKey(KeyCode.A);
-        Respawn = Input.GetKeyDown(KeyCode.R);
+        Respawn = Input.GetKey(KeyCode.R);
         Blocking = Input.GetKey(KeyCode.LeftShift);
         ToggleSettings = Input.GetKeyDown(KeyCode.P);
     }

@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8c4fa13fb98ec7745bab512cc6b3d51c, type: 3}
       propertyPath: m_Name
-      value: ship-cargo-c
+      value: Platform
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8c4fa13fb98ec7745bab512cc6b3d51c, type: 3}
       propertyPath: m_Layer
@@ -95,7 +95,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8164853939302693752}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9681432e01fac4cfa8d77590c39bb72b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -117,7 +117,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8164853939302693752}
   serializedVersion: 4
-  m_Mass: 100
+  m_Mass: 1e+9
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

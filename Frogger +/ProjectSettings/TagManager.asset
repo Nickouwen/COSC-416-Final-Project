@@ -16,6 +16,8 @@ TagManager:
   - Turret
   - EndGate
   - Spawn
+  - Projectile
+  - PlatformCollider
   layers:
   - Default
   - TransparentFX
