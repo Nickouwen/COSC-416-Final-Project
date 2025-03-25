@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
             if (settingsOpen) DisableSettingsMenu();
             else EnableSettingsMenu();
         }
+        if (gatesDestroyed == 5)
+        {
+            EndGateManager.Instance.SpawnEndGates();
+            gatesDestroyed = 0;
+        }
     }
     public void IncrementScore()
     {
@@ -82,6 +87,33 @@ public class GameManager : MonoBehaviour
         {
             TriggerGameOver();
         }
+    }
+
+    public void ResetGame()
+    {
+        Respawn(0);
+        lives = 3;
+        GameObject[] platforms = GameObject.FindGameObjectsWithTag("ship");
+        foreach (GameObject platform in platforms)
+        {
+            Destroy(platform);
+        }
+        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+        foreach (GameObject obstacle in obstacles)
+        {
+            Destroy(obstacle);
+        }
+        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile");
+        foreach (GameObject projectile in projectiles)
+        {
+            Destroy(projectile);
+        }
+        GameObject[] endGates = GameObject.FindGameObjectsWithTag("EndGate");
+        foreach (GameObject gate in endGates)
+        {
+            Destroy(gate.gameObject);
+        }
+        gatesDestroyed = 5;
     }
 
     public void TriggerGameOver()
