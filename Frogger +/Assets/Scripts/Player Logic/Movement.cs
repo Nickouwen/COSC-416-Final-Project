@@ -46,17 +46,17 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Water"))
         {
-            GameManager.Instance.Respawn();
+            GameManager.Instance.Respawn(1);
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
-            GameManager.Instance.Respawn();
+            GameManager.Instance.Respawn(1);
         }
         else if (collision.gameObject.CompareTag("EndGate"))
         {
             Destroy(collision.gameObject);
             GameManager.Instance.IncrementScore();
-            GameManager.Instance.Respawn();
+            GameManager.Instance.Respawn(0);
         }
         else if (collision.gameObject.CompareTag("Left-Wall"))
         {

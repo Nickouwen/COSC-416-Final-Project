@@ -10,7 +10,7 @@ public class TurretController : MonoBehaviour
     public float projectileSpeed = 10f;
 
     private float fireTimer;
-    private float randTimer;
+    private float randTimer = 10;
     private float fireRate;
 
     // Update is called once per frame

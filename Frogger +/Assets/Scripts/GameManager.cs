@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     {
         if (InputManager.Instance.Respawn)
         {
-            Respawn();
+            Respawn(0);
         }
         if (InputManager.Instance.ToggleSettings)
         {
@@ -70,13 +70,14 @@ public class GameManager : MonoBehaviour
         settingsOpen = false;
     }
 
-    public void Respawn()
+    public void Respawn(int livesToDecrement)
     {
         GameObject oldPlayer = GameObject.FindGameObjectWithTag("Player");
         GameObject newPlayer = Instantiate(playerPrefab, playerSpawn.position, playerSpawn.rotation);
         player = newPlayer;
         Destroy(oldPlayer);
-        lives--;
+        
+        lives -= livesToDecrement;
         if (lives == 0)
         {
             TriggerGameOver();

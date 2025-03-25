@@ -14,7 +14,7 @@ public class ProjectileController : MonoBehaviour
         {
             if (GameManager.Instance != null)
             {
-                GameManager.Instance.Respawn();
+                GameManager.Instance.Respawn(1);
             }
             Debug.Log("Hit player!");
             Destroy(gameObject);
