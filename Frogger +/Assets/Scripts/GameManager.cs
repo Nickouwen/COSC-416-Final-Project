@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public int lives = 2;
+    [SerializeField] public int lives = 3;
     [SerializeField] public int boatSpeed = 10;
     [SerializeField] public int obstacleSpeed = 25;
 
