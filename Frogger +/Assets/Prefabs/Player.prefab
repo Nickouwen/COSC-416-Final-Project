@@ -68,7 +68,12 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5866666021909216657, guid: 40d4eee9f5e52d348b0b96bd4a40d60c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ab0190d166a42c8499b24e13c86ffcd3, type: 2}
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 40d4eee9f5e52d348b0b96bd4a40d60c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -98,7 +103,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2408551353127768709}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.0000001
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -150,7 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130637488908ae14684b158ce374db60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRb: {fileID: 0}
+  moveAmount: 3
+  playerRb: {fileID: 8935047261283129168}
   player: {fileID: 2408551353127768709}
   bounceDuration: 0.15
 --- !u!114 &3424106858811219297
@@ -167,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shield: {fileID: 3045373414199503878, guid: 3a9ccc75c32b74f4e8fdd074f3b5e506, type: 3}
   player: {fileID: 3037453774064437311}
+  shieldTime: 1.2
 --- !u!4 &3037453774064437311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 40d4eee9f5e52d348b0b96bd4a40d60c, type: 3}

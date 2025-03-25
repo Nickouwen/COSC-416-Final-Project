@@ -3,6 +3,7 @@ using DG.Tweening;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] float moveAmount = 1;
     private bool isPlayerMoving = false;
     public Rigidbody playerRb;
     private bool onLeftWall = false;
@@ -23,27 +24,41 @@ public class Movement : MonoBehaviour
         if (!isPlayerMoving){
             if(InputManager.Instance.MoveUp)
             {
-                MovePlayer(Vector3.forward);
+                MovePlayer(new Vector3(0, 0, moveAmount));
             }
             if(InputManager.Instance.MoveDown)
             {
-                MovePlayer(Vector3.forward*-1);
+                MovePlayer(new Vector3(0, 0, -moveAmount));
             }
             if(InputManager.Instance.MoveRight && !onRightWall)
             {
                 onLeftWall = false;
-                MovePlayer(Vector3.right);
+                MovePlayer(new Vector3(moveAmount, 0, 0));
             }
             if(InputManager.Instance.MoveLeft && !onLeftWall)
             {
                 onRightWall = false;
-                MovePlayer(Vector3.left);
+                MovePlayer(new Vector3(-moveAmount, 0, 0));
             }
         }
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Left-Wall"))
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            GameManager.Instance.Respawn(1);
+        }
+        else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            GameManager.Instance.Respawn(1);
+        }
+        else if (collision.gameObject.CompareTag("EndGate"))
+        {
+            Destroy(collision.gameObject);
+            GameManager.Instance.IncrementScore();
+            GameManager.Instance.Respawn(0);
+        }
+        else if (collision.gameObject.CompareTag("Left-Wall"))
         {
             onLeftWall = true;
         }
@@ -51,15 +66,15 @@ public class Movement : MonoBehaviour
         {
             onRightWall = true;
         }
-        if (collision.gameObject.CompareTag("Water"))
-        {
-            GameManager.Instance.Respawn(player, GameManager.Instance.playerSpawn);
-        }
     }
     // Moves player only when the previous animation is over
-    void MovePlayer(Vector3 direction){
-        isPlayerMoving = true;
-        player.transform.DOMove(player.transform.position + direction, bounceDuration).SetEase(Ease.OutBounce).OnComplete(() => isPlayerMoving = false);
-        player.transform.DOJump(player.transform.position + direction, 1, 1, bounceDuration, false).OnComplete(() => isPlayerMoving = false);
+    void MovePlayer(Vector3 direction)
+    {
+        if (player != null)
+        {
+            isPlayerMoving = true;
+            player.transform.DOMove(player.transform.position + direction, bounceDuration).SetEase(Ease.OutBounce).OnComplete(() => isPlayerMoving = false);
+            player.transform.DOJump(player.transform.position + direction, 1, 1, bounceDuration, false).OnComplete(() => isPlayerMoving = false);
+        }
     }
 }

@@ -12,7 +12,10 @@ TagManager:
   - ship
   - Water
   - Ground
+  - Obstacle
   - Turret
+  - EndGate
+  - Spawn
   layers:
   - Default
   - TransparentFX

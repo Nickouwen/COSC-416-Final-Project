@@ -6,6 +6,9 @@ public class Deflection : MonoBehaviour
 {
     [SerializeField] public GameObject shield;
     [SerializeField] public Transform player;
+    [SerializeField] public float shieldTime = 2f;
+
+    private float shieldTimer;
     private GameObject currentShield;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,9 +23,14 @@ public class Deflection : MonoBehaviour
 
         if (InputManager.Instance.Blocking && !multipleMovements)
         {
+            shieldTimer += Time.deltaTime;
             if (currentShield == null)
             {
                 currentShield = Instantiate(shield, this.transform.position + new Vector3(0, 1.0f, 0), this.transform.rotation, player.transform);
+            }
+            if (shieldTimer > shieldTime)
+            {
+                Destroy(currentShield);
             }
         }
         else
@@ -30,6 +38,7 @@ public class Deflection : MonoBehaviour
             if (currentShield != null || multipleMovements)
             {
                 Destroy(currentShield);
+                shieldTimer = 0f;
             }
         }
     }
