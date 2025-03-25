@@ -3,16 +3,6 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    private void Update()
-    {
-        if (GameManager.Instance != null)
-        {
-            if (GameManager.Instance.Reset)
-            {
-                Destroy(gameObject);
-            }    
-        }
-    }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Shield"))

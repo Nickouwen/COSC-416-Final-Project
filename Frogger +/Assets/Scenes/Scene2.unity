@@ -170,7 +170,8 @@ MonoBehaviour:
   turret: {fileID: 579526317}
   projectilePrefab: {fileID: 7277360369885215367, guid: ad7b341b8da342040a5f64fa78f06451, type: 3}
   projectileSpawn: {fileID: 517425559}
-  fireRate: 1
+  maxFireRate: 4
+  minFireRate: 1.2
   projectileSpeed: 10
 --- !u!4 &579526321 stripped
 Transform:
@@ -1108,7 +1109,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1850188363}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6886612406329304499, guid: 9bdec2915f060a644bd87d68044cada4, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bdec2915f060a644bd87d68044cada4, type: 3}

@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject settingsMenu;
     public ScoreCounterUI scoreCounter;
-    public bool Reset;
 
     private int gatesDestroyed;
     private int score;
@@ -40,6 +39,11 @@ public class GameManager : MonoBehaviour
         if (InputManager.Instance.Respawn)
         {
             Respawn();
+        }
+        if (InputManager.Instance.ToggleSettings)
+        {
+            if (settingsOpen) DisableSettingsMenu();
+            else EnableSettingsMenu();
         }
     }
     public void IncrementScore()
@@ -77,16 +81,6 @@ public class GameManager : MonoBehaviour
         {
             TriggerGameOver();
         }
-    }
-
-    public void ResetGame()
-    {
-        Reset = true;
-        GameObject oldPlayer = GameObject.FindGameObjectWithTag("Player");
-        GameObject newPlayer = Instantiate(playerPrefab, playerSpawn.position, playerSpawn.rotation);
-        player = newPlayer;
-        Destroy(oldPlayer);
-        Reset = false;
     }
 
     public void TriggerGameOver()
