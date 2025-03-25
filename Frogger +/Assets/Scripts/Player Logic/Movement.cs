@@ -3,6 +3,7 @@ using DG.Tweening;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField] float moveAmount = 1;
     private bool isPlayerMoving = false;
     public Rigidbody playerRb;
     private bool onLeftWall = false;
@@ -23,7 +24,7 @@ public class Movement : MonoBehaviour
         if (!isPlayerMoving){
             if(InputManager.Instance.MoveUp)
             {
-                MovePlayer(Vector3.forward);
+                MovePlayer(new Vector3(0, 0, moveAmount));
             }
             if(InputManager.Instance.MoveDown)
             {
