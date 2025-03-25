@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
     }
     public void EnableSettingsMenu()
     {
-        if (gameOver) return;
         Time.timeScale = 0f;
         settingsMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
@@ -80,7 +79,6 @@ public class GameManager : MonoBehaviour
 
     public void DisableSettingsMenu()
     {
-        if (gameOver) return;
         Time.timeScale = 1f;
         settingsMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -98,6 +96,7 @@ public class GameManager : MonoBehaviour
         lives -= livesToDecrement;
         if (lives == 0)
         {
+            Debug.Log("Game Over!");
             TriggerGameOver();
         }
     }
