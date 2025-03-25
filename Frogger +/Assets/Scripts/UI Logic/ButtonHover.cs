@@ -2,19 +2,21 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HoverOver : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public Color hoverColor = Color.white;
-    public Color hoverTextColor = Color.black;
-
+    public Color hoverColor = new Color(169, 50, 38);
     private Color originalColor;
-    private Color originalTextColor;
+
     private Image buttonImage;
 
     void Start()
     {
         buttonImage = GetComponent<Image>();
-        originalColor = buttonImage.color;
+        
+        if (buttonImage != null)
+        {
+            originalColor = buttonImage.color;
+        }
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

@@ -448,8 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ffd7046de67ba440ac7b83009f39914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverTextColor: {r: 0, g: 0, b: 0, a: 1}
+  hoverColor: {r: 0.6627451, g: 0.19607843, b: 0.14901961, a: 1}
 --- !u!4 &302401344 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1896171005394774350, guid: d4fe527bb29264d9bb6823e4f5e46308, type: 3}
@@ -779,6 +778,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1013793852}
   m_SourcePrefab: {fileID: 100100000, guid: fbc27dc68f60d4f65aa30b4369063014, type: 3}
+--- !u!1 &467690771 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3861272494796375351, guid: 5dfb0782783fabe46b6f365825c8e7cf, type: 3}
+  m_PrefabInstance: {fileID: 2017392481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &501418694 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2104063463763298613, guid: b9f67be21eded4fb1917e381d9346c9b, type: 3}
@@ -1192,6 +1196,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1162633610}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &660837233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2408907535227988480, guid: 5dfb0782783fabe46b6f365825c8e7cf, type: 3}
+  m_PrefabInstance: {fileID: 2017392481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &687492076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a94f909df2d7a3f4d87878e2cd863787, type: 3}
@@ -2104,6 +2113,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2104063463763298613, guid: b9f67be21eded4fb1917e381d9346c9b, type: 3}
+      propertyPath: lives
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104063463763298613, guid: b9f67be21eded4fb1917e381d9346c9b, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1866144867}
@@ -2397,6 +2410,22 @@ MonoBehaviour:
   scoreTextContainer: {fileID: 1155939816}
   duration: 1
   animationCurve: 1
+--- !u!114 &1093938088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093938084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6261df040a53b347bb2ba4e7c047a15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hearts:
+  - {fileID: 467690771}
+  - {fileID: 1864167892}
+  - {fileID: 660837233}
 --- !u!1 &1103907534
 GameObject:
   m_ObjectHideFlags: 0
@@ -4118,6 +4147,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1864167892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5080411017719836963, guid: 5dfb0782783fabe46b6f365825c8e7cf, type: 3}
+  m_PrefabInstance: {fileID: 2017392481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1866144867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2408551353127768709, guid: c63d6632f0c39428494019eb4edc34c1, type: 3}
@@ -4394,8 +4428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ffd7046de67ba440ac7b83009f39914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverTextColor: {r: 0, g: 0, b: 0, a: 1}
+  hoverColor: {r: 0.62352943, g: 0.19607843, b: 0.14901961, a: 1}
 --- !u!4 &1992347918 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2255041818516954811, guid: 695e4f3d23d304228916f94c60ad3305, type: 3}
@@ -4621,6 +4654,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2135967903677044268, guid: 5dfb0782783fabe46b6f365825c8e7cf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1093938086}
+    - targetCorrespondingSourceObject: {fileID: 2135967903677044268, guid: 5dfb0782783fabe46b6f365825c8e7cf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1093938088}
   m_SourcePrefab: {fileID: 100100000, guid: 5dfb0782783fabe46b6f365825c8e7cf, type: 3}
 --- !u!4 &2017626549 stripped
 Transform:
