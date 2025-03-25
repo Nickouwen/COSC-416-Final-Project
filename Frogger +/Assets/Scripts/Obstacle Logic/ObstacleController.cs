@@ -17,6 +17,10 @@ public class ObstacleController : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
+            if (GameManager.Instance.Reset)
+            {
+                Destroy(gameObject);
+            }
             if (rightToLeft) speed = GameManager.Instance.obstacleSpeed * -1;
             else speed = GameManager.Instance.obstacleSpeed;
         }

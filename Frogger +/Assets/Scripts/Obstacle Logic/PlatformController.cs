@@ -16,6 +16,10 @@ public class PlatformController : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
+            if (GameManager.Instance.Reset)
+            {
+                Destroy(gameObject);
+            }
             if (rightToLeft) speed = GameManager.Instance.boatSpeed * -1;
             else speed = GameManager.Instance.boatSpeed;
         }

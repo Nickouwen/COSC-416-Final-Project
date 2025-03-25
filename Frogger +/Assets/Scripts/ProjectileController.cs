@@ -3,6 +3,16 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
+    private void Update()
+    {
+        if (GameManager.Instance != null)
+        {
+            if (GameManager.Instance.Reset)
+            {
+                Destroy(gameObject);
+            }    
+        }
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Shield"))
@@ -20,6 +30,10 @@ public class ProjectileController : MonoBehaviour
             Destroy(gameObject);
         }
         else if (other.gameObject.CompareTag("Obstacle"))
+        {
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.CompareTag("Spawn"))
         {
             Destroy(gameObject);
         }

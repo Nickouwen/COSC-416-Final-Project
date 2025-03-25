@@ -15,6 +15,7 @@ TagManager:
   - Obstacle
   - Turret
   - EndGate
+  - Spawn
   layers:
   - Default
   - TransparentFX
