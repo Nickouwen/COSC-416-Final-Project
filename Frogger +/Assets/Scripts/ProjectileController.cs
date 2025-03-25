@@ -19,6 +19,10 @@ public class ProjectileController : MonoBehaviour
             Debug.Log("Hit player!");
             Destroy(gameObject);
         }
+        else if (other.gameObject.CompareTag("Obstacle"))
+        {
+            Destroy(gameObject);
+        }
         else Destroy(gameObject, 15);
     }
 }

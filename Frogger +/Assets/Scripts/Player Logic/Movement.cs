@@ -28,17 +28,17 @@ public class Movement : MonoBehaviour
             }
             if(InputManager.Instance.MoveDown)
             {
-                MovePlayer(Vector3.forward*-1);
+                MovePlayer(new Vector3(0, 0, -moveAmount));
             }
             if(InputManager.Instance.MoveRight && !onRightWall)
             {
                 onLeftWall = false;
-                MovePlayer(Vector3.right);
+                MovePlayer(new Vector3(moveAmount, 0, 0));
             }
             if(InputManager.Instance.MoveLeft && !onLeftWall)
             {
                 onRightWall = false;
-                MovePlayer(Vector3.left);
+                MovePlayer(new Vector3(-moveAmount, 0, 0));
             }
         }
     }
@@ -54,6 +54,7 @@ public class Movement : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("EndGate"))
         {
+            Destroy(collision.gameObject);
             GameManager.Instance.IncrementScore();
             GameManager.Instance.Respawn();
         }
