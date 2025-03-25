@@ -51,6 +51,10 @@ public class GameManager : MonoBehaviour
             gatesDestroyed = 0;
         }
     }
+    public int getBoatSpeed()
+    {
+        return boatSpeed;
+    }
     public void IncrementScore()
     {
         score++;

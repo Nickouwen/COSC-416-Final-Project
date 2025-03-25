@@ -22,6 +22,21 @@ public class PlatformController : MonoBehaviour
         SpawnPlatform();
 
     }
+    public int getSpeed()
+    {
+        return speed;
+    }
+    public bool getRightToLeft()
+    {
+        if (rightToLeft)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     void SpawnPlatform()
     {
