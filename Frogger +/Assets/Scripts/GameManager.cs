@@ -11,14 +11,17 @@ public class GameManager : MonoBehaviour
     public Transform playerSpawn;
     public GameObject player;
     public GameObject settingsMenu;
+    public GameObject gameOverMenu;
     public ScoreCounterUI scoreCounter;
 
     private int gatesDestroyed;
     private int score;
     private bool settingsOpen;
+    [SerializeField] private bool gameOver;
 
     public int GatesDestroyed => gatesDestroyed;
     public bool IsSettingsOpen => settingsOpen;
+    public bool IsGameOver => gameOver;
 
 
 
@@ -26,6 +29,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         DisableSettingsMenu();
+        DisableEndScreen();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,6 +54,13 @@ public class GameManager : MonoBehaviour
             EndGateManager.Instance.SpawnEndGates();
             gatesDestroyed = 0;
         }
+        if (gameOver)
+        {
+            if (!gameOverMenu.activeSelf)
+            {
+                EnableEndScreen();
+            }
+        }
     }
     public void IncrementScore()
     {
@@ -59,6 +70,7 @@ public class GameManager : MonoBehaviour
     }
     public void EnableSettingsMenu()
     {
+        if (gameOver) return;
         Time.timeScale = 0f;
         settingsMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
@@ -68,6 +80,7 @@ public class GameManager : MonoBehaviour
 
     public void DisableSettingsMenu()
     {
+        if (gameOver) return;
         Time.timeScale = 1f;
         settingsMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -114,11 +127,28 @@ public class GameManager : MonoBehaviour
             Destroy(gate.gameObject);
         }
         gatesDestroyed = 5;
+        score = 0;
+        scoreCounter.UpdateScore(score);
+        gameOver = false;
+        DisableEndScreen();
     }
 
     public void TriggerGameOver()
     {
-        // Do something in UI (to be created)
-        Debug.Log("Game over!");
+        gameOver = true;
+    }
+    public void EnableEndScreen()
+    {
+        Time.timeScale = 0f;
+        gameOverMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    public void DisableEndScreen()
+    {
+        Time.timeScale = 1f;
+        gameOverMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
