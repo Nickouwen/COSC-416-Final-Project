@@ -23,6 +23,7 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.IsGameOver) return;
         MoveUp = Input.GetKey(KeyCode.W);
         MoveDown = Input.GetKey(KeyCode.S);
         MoveRight = Input.GetKey(KeyCode.D);
