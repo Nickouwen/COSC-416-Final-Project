@@ -18,6 +18,7 @@ TagManager:
   - Spawn
   - Projectile
   - PlatformCollider
+  - shipTop
   layers:
   - Default
   - TransparentFX
@@ -25,10 +26,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - ship
+  - shipTop
+  - Wall
+  - Player
   - 
   - 
   - 
