@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using System.Threading;
 
 public class Movement : MonoBehaviour
 {
@@ -8,9 +9,10 @@ public class Movement : MonoBehaviour
     public Rigidbody playerRb;
     private bool onLeftWall = false;
     private bool onRightWall = false;
+    private bool onShipTop = false;
     public GameObject player;
     // how long bounce animation is
-    public float bounceDuration = .15f;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,11 +39,12 @@ public class Movement : MonoBehaviour
             }
             if(InputManager.Instance.MoveLeft && !onLeftWall)
             {
-                onRightWall = false;
                 MovePlayer(new Vector3(-moveAmount, 0, 0));
             }
         }
+
     }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Water"))
@@ -73,8 +76,37 @@ public class Movement : MonoBehaviour
         if (player != null)
         {
             isPlayerMoving = true;
-            player.transform.DOMove(player.transform.position + direction, bounceDuration).SetEase(Ease.OutBounce).OnComplete(() => isPlayerMoving = false);
-            player.transform.DOJump(player.transform.position + direction, 1, 1, bounceDuration, false).OnComplete(() => isPlayerMoving = false);
+            Vector3 targetPosition = player.transform.position + direction;
+            RaycastHit hit;
+            float targetY = targetPosition.y;
+            
+            if (Physics.Raycast(new Vector3(targetPosition.x, targetPosition.y + 10f, targetPosition.z), Vector3.down, out hit, 20f))
+            {
+                targetY = hit.point.y;
+            }
+            targetPosition.y = targetY;
+            
+            float baseJumpHeight = 2f;
+            float heightDifference = targetY - player.transform.position.y;
+            float jumpHeight = baseJumpHeight;
+
+            if (heightDifference > 0) {
+                jumpHeight += heightDifference * 0.5f;
+            } else if (heightDifference < 0) {
+                jumpHeight = Mathf.Max(baseJumpHeight * 0.7f, jumpHeight + heightDifference * 0.3f);
+            }
+            
+            DOTween.Sequence()
+                .Append(player.transform.DOJump(targetPosition, jumpHeight, 1, 0.1f))
+                .Append(player.transform.DOMove(targetPosition, 0.05f).SetEase(Ease.OutBounce))
+                .AppendInterval(0.04f)
+                //.AppendInterval(0.205f)
+                .OnComplete(() => {
+                    isPlayerMoving = false;
+                });
         }
+        
     }
 }
+
+//playerRb.AddForce(Vector3.down * 0.0000057f, ForceMode.Impulse);
