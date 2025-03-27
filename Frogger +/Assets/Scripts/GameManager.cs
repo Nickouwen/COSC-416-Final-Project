@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
 
 
+
     public static GameManager Instance;
     void Awake()
     {
@@ -81,15 +82,25 @@ public class GameManager : MonoBehaviour
 
     public void Respawn(int livesToDecrement)
     {
-        GameObject oldPlayer = GameObject.FindGameObjectWithTag("Player");
-        GameObject newPlayer = Instantiate(playerPrefab, playerSpawn.position, playerSpawn.rotation);
-        player = newPlayer;
-        Destroy(oldPlayer);
-        
-        lives -= livesToDecrement;
-        if (lives == 0)
+        if (player != null)
         {
-            TriggerGameOver();
+            GameObject[] detachedHeads = GameObject.FindGameObjectsWithTag("DetachedHead");
+            foreach (GameObject head in detachedHeads)
+            {
+                Destroy(head);
+            }
+            GameObject oldPlayer = GameObject.FindGameObjectWithTag("Player");
+            GameObject newPlayer = Instantiate(playerPrefab, playerSpawn.position, playerSpawn.rotation);
+            player = newPlayer;
+            Destroy(oldPlayer);
+            PlayerHeadController headController = player.GetComponent<PlayerHeadController>();
+            headController.Reset();
+            
+            lives -= livesToDecrement;
+            if (lives == 0)
+            {
+                TriggerGameOver();
+            }
         }
     }
 

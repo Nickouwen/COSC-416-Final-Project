@@ -9,7 +9,6 @@ public class Movement : MonoBehaviour
     public Rigidbody playerRb;
     private bool onLeftWall = false;
     private bool onRightWall = false;
-    private bool onShipTop = false;
     public GameObject player;
     // how long bounce animation is
     
