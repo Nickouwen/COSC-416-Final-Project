@@ -9,6 +9,7 @@ public class PlayerHeadController : MonoBehaviour
     public GameObject bodyPrefab;
     public Transform body;
     public Transform bodyAttachPoint;
+    private bool isDead = false;
 
     public void PopHead()
     {      
@@ -39,12 +40,29 @@ public class PlayerHeadController : MonoBehaviour
         StartCoroutine(RespawnAfterDelay());
     }
     
+    public void sinkBody()
+    {
+        if(isDead) return;
+        isDead = true;
+        body.GetChild(0).GetComponent<SkinnedMeshRenderer>().enabled = false;
+        body.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
+        GameObject detachedBody = Instantiate(bodyPrefab, bodyAttachPoint.position, bodyAttachPoint.rotation);
+        detachedBody.transform.GetComponent<CapsuleCollider>().enabled = false;
+        Rigidbody rb = detachedBody.GetComponent<Rigidbody>();
+        rb.AddForce(0, -1.0f, 0, ForceMode.Force);
+        rb.AddTorque(Random.insideUnitSphere * 5f, ForceMode.Impulse);
+
+        Destroy(detachedBody, respawnDelay + 1f);
+
+        StartCoroutine(RespawnAfterDelay());
+    }
     private IEnumerator RespawnAfterDelay()
     {
         yield return new WaitForSeconds(respawnDelay);
 
         if (GameManager.Instance != null)
         {
+            isDead = false;
             GameManager.Instance.Respawn(1);
         }
     }

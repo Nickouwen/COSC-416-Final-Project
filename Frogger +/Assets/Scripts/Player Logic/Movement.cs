@@ -11,7 +11,6 @@ public class Movement : MonoBehaviour
     private bool onRightWall = false;
     public GameObject player;
     private float directionTurn = 0;
-    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,7 +48,8 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Water"))
         {
-            GameManager.Instance.Respawn(1);
+            PlayerHeadController deadBodyController = player.GetComponent<PlayerHeadController>();
+            deadBodyController.sinkBody();
         }
         else if (collision.gameObject.CompareTag("EndGate"))
         {
