@@ -89,6 +89,13 @@ public class GameManager : MonoBehaviour
             {
                 Destroy(head);
             }
+            
+            GameObject[] detachedBodies = GameObject.FindGameObjectsWithTag("DetachedBody");
+            foreach (GameObject body in detachedBodies)
+            {
+                Destroy(body);
+            }
+
             GameObject oldPlayer = GameObject.FindGameObjectWithTag("Player");
             GameObject newPlayer = Instantiate(playerPrefab, playerSpawn.position, playerSpawn.rotation);
             player = newPlayer;

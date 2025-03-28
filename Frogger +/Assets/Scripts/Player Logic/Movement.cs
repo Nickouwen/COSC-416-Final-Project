@@ -38,6 +38,7 @@ public class Movement : MonoBehaviour
             }
             if(InputManager.Instance.MoveLeft && !onLeftWall)
             {
+                onRightWall = false;
                 MovePlayer(new Vector3(-moveAmount, 0, 0));
             }
         }
@@ -47,10 +48,6 @@ public class Movement : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Water"))
-        {
-            GameManager.Instance.Respawn(1);
-        }
-        else if (collision.gameObject.CompareTag("Obstacle"))
         {
             GameManager.Instance.Respawn(1);
         }

@@ -6,6 +6,9 @@ public class PlayerHeadController : MonoBehaviour
     public Transform headAttachPoint;
     public float respawnDelay = 2.0f;
     public GameObject realHead;
+    public GameObject bodyPrefab;
+    public Transform body;
+    public Transform bodyAttachPoint;
 
     public void PopHead()
     {      
@@ -17,6 +20,21 @@ public class PlayerHeadController : MonoBehaviour
         rb.AddTorque(Random.insideUnitSphere * 10f, ForceMode.Impulse);
 
         Destroy(detachedHead, respawnDelay + 2f);
+
+        StartCoroutine(RespawnAfterDelay());
+    }
+
+    public void throwBody(int direction)
+    {
+        body.GetChild(0).GetComponent<SkinnedMeshRenderer>().enabled = false;
+        body.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
+        GameObject detachedBody = Instantiate(bodyPrefab, bodyAttachPoint.position, bodyAttachPoint.rotation);
+
+        Rigidbody rb = detachedBody.GetComponent<Rigidbody>();
+        rb.AddForce(direction * 5.0f, 1f, 0, ForceMode.Impulse);
+        rb.AddTorque(Random.insideUnitSphere * 5f, ForceMode.Impulse);
+
+        Destroy(detachedBody, respawnDelay + 1f);
 
         StartCoroutine(RespawnAfterDelay());
     }
