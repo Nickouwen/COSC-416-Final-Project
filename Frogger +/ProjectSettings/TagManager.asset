@@ -19,6 +19,9 @@ TagManager:
   - Projectile
   - PlatformCollider
   - shipTop
+  - PlayerHead
+  - DetachedHead
+  - DetachedBody
   layers:
   - Default
   - TransparentFX

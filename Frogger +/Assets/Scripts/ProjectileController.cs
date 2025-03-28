@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public class ProjectileController : MonoBehaviour
 {
@@ -12,10 +13,8 @@ public class ProjectileController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Player"))
         {
-            if (GameManager.Instance != null)
-            {
-                GameManager.Instance.Respawn(1);
-            }
+            PlayerHeadController headController = other.gameObject.GetComponent<PlayerHeadController>();
+            headController.PopHead();
             Debug.Log("Hit player!");
             Destroy(gameObject);
         }
@@ -28,5 +27,10 @@ public class ProjectileController : MonoBehaviour
             Destroy(gameObject);
         }
         else Destroy(gameObject, 15);
+    }
+    private IEnumerator popPlayerHead()
+    {
+        yield return new WaitForSeconds(1.0f);
+        GameManager.Instance.Respawn(1);
     }
 }

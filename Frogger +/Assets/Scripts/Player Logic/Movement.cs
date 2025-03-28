@@ -9,10 +9,8 @@ public class Movement : MonoBehaviour
     public Rigidbody playerRb;
     private bool onLeftWall = false;
     private bool onRightWall = false;
-    private bool onShipTop = false;
     public GameObject player;
-    // how long bounce animation is
-    
+    private float directionTurn = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,6 +37,7 @@ public class Movement : MonoBehaviour
             }
             if(InputManager.Instance.MoveLeft && !onLeftWall)
             {
+                onRightWall = false;
                 MovePlayer(new Vector3(-moveAmount, 0, 0));
             }
         }
@@ -49,11 +48,8 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Water"))
         {
-            GameManager.Instance.Respawn(1);
-        }
-        else if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            GameManager.Instance.Respawn(1);
+            PlayerHeadController deadBodyController = player.GetComponent<PlayerHeadController>();
+            deadBodyController.sinkBody();
         }
         else if (collision.gameObject.CompareTag("EndGate"))
         {
@@ -79,13 +75,17 @@ public class Movement : MonoBehaviour
             Vector3 targetPosition = player.transform.position + direction;
             RaycastHit hit;
             float targetY = targetPosition.y;
+
+            if(targetPosition.z > player.transform.position.z) directionTurn = 0f;
+            else if(targetPosition.z < player.transform.position.z) directionTurn = -180f;
+            else if(targetPosition.x > player.transform.position.x) directionTurn = 90f;
+            else if(targetPosition.x < player.transform.position.x) directionTurn = -90f;
             
             if (Physics.Raycast(new Vector3(targetPosition.x, targetPosition.y + 10f, targetPosition.z), Vector3.down, out hit, 20f))
             {
                 targetY = hit.point.y;
             }
             targetPosition.y = targetY;
-            
             float baseJumpHeight = 2f;
             float heightDifference = targetY - player.transform.position.y;
             float jumpHeight = baseJumpHeight;
@@ -98,6 +98,7 @@ public class Movement : MonoBehaviour
             
             DOTween.Sequence()
                 .Append(player.transform.DOJump(targetPosition, jumpHeight, 1, 0.1f))
+                .Append(player.transform.DORotate(new Vector3(0, directionTurn, 0), 0.05f))
                 .Append(player.transform.DOMove(targetPosition, 0.05f).SetEase(Ease.OutBounce))
                 .AppendInterval(0.04f)
                 //.AppendInterval(0.205f)
