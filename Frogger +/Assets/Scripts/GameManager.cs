@@ -1,19 +1,32 @@
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] public int lives = 3;
     [SerializeField] public int boatSpeed = 10;
     [SerializeField] public int obstacleSpeed = 25;
+    [SerializeField] public float projectileSpeedMult = 1;
 
     // Game objects to spawn & spawn points
-    public GameObject playerPrefab;
     public Transform playerSpawn;
+
+    public GameObject playerPrefab;
     public GameObject player;
+    public GameObject mainMenu;
     public GameObject settingsMenu;
     public GameObject gameOverMenu;
+    public GameObject pauseMenu;
+    public GameObject credits;
+
+    public Slider boatSlider;
+    public Slider obstacleSlider;
+    public Slider projectileSlider;
+
     public ScoreCounterUI scoreCounter;
 
+    private GameObject previousMenu;
     private int gatesDestroyed;
     private int score;
     private bool settingsOpen;
@@ -28,13 +41,24 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     void Awake()
     {
-        DisableSettingsMenu();
-        DisableEndScreen();
+        DisableMenu(settingsMenu);
+        DisableMenu(gameOverMenu);
+        DisableMenu(pauseMenu);
+        DisableMenu(credits);
+        
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Instance = this; // setup singleton
+        EnableMenu(mainMenu);
+        boatSlider.value = boatSpeed;
+        obstacleSlider.value = obstacleSpeed;
+        projectileSlider.value = projectileSpeedMult;
+
+        UpdateBoatSpeed();
+        UpdateObstacleSpeed();
+        UpdateProjectileMult();
     }
 
     // Update is called once per frame
@@ -46,8 +70,8 @@ public class GameManager : MonoBehaviour
         }
         if (InputManager.Instance.ToggleSettings)
         {
-            if (settingsOpen) DisableSettingsMenu();
-            else EnableSettingsMenu();
+            if (settingsOpen) DisableMenu(pauseMenu);
+            else EnableMenu(pauseMenu);
         }
         if (gatesDestroyed == 5)
         {
@@ -58,7 +82,7 @@ public class GameManager : MonoBehaviour
         {
             if (!gameOverMenu.activeSelf)
             {
-                EnableEndScreen();
+                EnableMenu(gameOverMenu);
             }
         }
     }
@@ -68,22 +92,38 @@ public class GameManager : MonoBehaviour
         gatesDestroyed++;
         scoreCounter.UpdateScore(score);
     }
-    public void EnableSettingsMenu()
+
+    public void EnableMenu(GameObject menu)
     {
         Time.timeScale = 0f;
-        settingsMenu.SetActive(true);
+        menu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        settingsOpen = true;
     }
 
-    public void DisableSettingsMenu()
+    public void DisableMenu(GameObject menu)
     {
+        previousMenu = menu;
         Time.timeScale = 1f;
-        settingsMenu.SetActive(false);
+        menu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        settingsOpen = false;
+    }
+
+    public void DisableNestedMenu(GameObject menu)
+    {
+        Time.timeScale = 1f;
+        menu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void ReturnToPreviousMenu()
+    {
+        if (previousMenu != null)
+        {
+            EnableMenu(previousMenu);
+        }
     }
 
     public void Respawn(int livesToDecrement)
@@ -129,25 +169,29 @@ public class GameManager : MonoBehaviour
         score = 0;
         scoreCounter.UpdateScore(score);
         gameOver = false;
-        DisableEndScreen();
+        DisableMenu(gameOverMenu);
     }
 
     public void TriggerGameOver()
     {
         gameOver = true;
     }
-    public void EnableEndScreen()
+
+    public void UpdateBoatSpeed()
     {
-        Time.timeScale = 0f;
-        gameOverMenu.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        boatSpeed = (int)boatSlider.value;
+        Debug.Log("Set boat speed to:" + boatSpeed);
     }
-    public void DisableEndScreen()
+
+    public void UpdateObstacleSpeed()
     {
-        Time.timeScale = 1f;
-        gameOverMenu.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        obstacleSpeed = (int)obstacleSlider.value;
+        Debug.Log("Set obstacle speed to:" + obstacleSpeed);
+    }
+
+    public void UpdateProjectileMult()
+    {
+        projectileSpeedMult = projectileSlider.value;
+        Debug.Log("Set projectile mult to:" + projectileSpeedMult);
     }
 }
