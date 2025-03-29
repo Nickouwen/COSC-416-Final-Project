@@ -1,21 +1,29 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] public int lives = 3;
     [SerializeField] public int boatSpeed = 10;
     [SerializeField] public int obstacleSpeed = 25;
+    [SerializeField] public float projectileSpeedMult = 1;
 
     // Game objects to spawn & spawn points
-    public GameObject playerPrefab;
     public Transform playerSpawn;
+
+    public GameObject playerPrefab;
     public GameObject player;
     public GameObject mainMenu;
     public GameObject settingsMenu;
     public GameObject gameOverMenu;
     public GameObject pauseMenu;
     public GameObject credits;
+
+    public Slider boatSlider;
+    public Slider obstacleSlider;
+    public Slider projectileSlider;
+
     public ScoreCounterUI scoreCounter;
 
     private GameObject previousMenu;
@@ -44,6 +52,13 @@ public class GameManager : MonoBehaviour
     {
         Instance = this; // setup singleton
         EnableMenu(mainMenu);
+        boatSlider.value = boatSpeed;
+        obstacleSlider.value = obstacleSpeed;
+        projectileSlider.value = projectileSpeedMult;
+
+        UpdateBoatSpeed();
+        UpdateObstacleSpeed();
+        UpdateProjectileMult();
     }
 
     // Update is called once per frame
@@ -160,5 +175,23 @@ public class GameManager : MonoBehaviour
     public void TriggerGameOver()
     {
         gameOver = true;
+    }
+
+    public void UpdateBoatSpeed()
+    {
+        boatSpeed = (int)boatSlider.value;
+        Debug.Log("Set boat speed to:" + boatSpeed);
+    }
+
+    public void UpdateObstacleSpeed()
+    {
+        obstacleSpeed = (int)obstacleSlider.value;
+        Debug.Log("Set obstacle speed to:" + obstacleSpeed);
+    }
+
+    public void UpdateProjectileMult()
+    {
+        projectileSpeedMult = projectileSlider.value;
+        Debug.Log("Set projectile mult to:" + projectileSpeedMult);
     }
 }
