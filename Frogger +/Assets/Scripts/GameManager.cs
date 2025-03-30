@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
 
 
 
-
     public static GameManager Instance;
     void Awake()
     {
@@ -87,10 +86,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public int getBoatSpeed()
-    {
-        return boatSpeed;
-    }
     public void IncrementScore()
     {
         score++;
@@ -133,32 +128,16 @@ public class GameManager : MonoBehaviour
 
     public void Respawn(int livesToDecrement)
     {
-        if (player != null)
+        GameObject oldPlayer = GameObject.FindGameObjectWithTag("Player");
+        GameObject newPlayer = Instantiate(playerPrefab, playerSpawn.position, playerSpawn.rotation);
+        player = newPlayer;
+        Destroy(oldPlayer);
+        
+        lives -= livesToDecrement;
+        if (lives == 0)
         {
-            GameObject[] detachedHeads = GameObject.FindGameObjectsWithTag("DetachedHead");
-            foreach (GameObject head in detachedHeads)
-            {
-                Destroy(head);
-            }
-            
-            GameObject[] detachedBodies = GameObject.FindGameObjectsWithTag("DetachedBody");
-            foreach (GameObject body in detachedBodies)
-            {
-                Destroy(body);
-            }
-
-            GameObject oldPlayer = GameObject.FindGameObjectWithTag("Player");
-            GameObject newPlayer = Instantiate(playerPrefab, playerSpawn.position, playerSpawn.rotation);
-            player = newPlayer;
-            Destroy(oldPlayer);
-            PlayerHeadController headController = player.GetComponent<PlayerHeadController>();
-            headController.Reset();
-            
-            lives -= livesToDecrement;
-            if (lives == 0)
-            {
-                TriggerGameOver();
-            }
+            Debug.Log("Game Over!");
+            TriggerGameOver();
         }
     }
 
