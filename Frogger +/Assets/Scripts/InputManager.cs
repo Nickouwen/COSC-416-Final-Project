@@ -23,20 +23,11 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-<<<<<<< HEAD
         MoveUp = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.I);
         MoveDown = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.K);
         MoveRight = Input.GetKey(KeyCode.D ) || Input.GetKey(KeyCode.L);
         MoveLeft = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.J);
         Respawn = Input.GetKey(KeyCode.R);
-=======
-        if (GameManager.Instance.IsGameOver) return;
-        MoveUp = Input.GetKey(KeyCode.W);
-        MoveDown = Input.GetKey(KeyCode.S);
-        MoveRight = Input.GetKey(KeyCode.D);
-        MoveLeft = Input.GetKey(KeyCode.A);
-        Respawn = Input.GetKeyDown(KeyCode.R);
->>>>>>> ui
         Blocking = Input.GetKey(KeyCode.LeftShift);
         ToggleSettings = Input.GetKeyDown(KeyCode.P);
     }
