@@ -100,7 +100,7 @@ public class Movement : MonoBehaviour
                 .Append(player.transform.DOJump(targetPosition, jumpHeight, 1, 0.1f))
                 .Append(player.transform.DORotate(new Vector3(0, directionTurn, 0), 0.05f))
                 .Append(player.transform.DOMove(targetPosition, 0.05f).SetEase(Ease.OutBounce))
-                .AppendInterval(0.04f)
+                .AppendInterval(0.005f)
                 //.AppendInterval(0.205f)
                 .OnComplete(() => {
                     isPlayerMoving = false;
