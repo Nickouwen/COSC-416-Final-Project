@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 57664d18efff0ae46a07f684083240c4, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 57664d18efff0ae46a07f684083240c4, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 69495e7343b23ba48a5dd8903a689410, type: 2}
     - target: {fileID: 919132149155446097, guid: 57664d18efff0ae46a07f684083240c4, type: 3}
       propertyPath: m_Name
       value: Barrel Projectile
