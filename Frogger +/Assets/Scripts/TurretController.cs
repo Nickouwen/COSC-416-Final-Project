@@ -26,7 +26,7 @@ public class TurretController : MonoBehaviour
         if (fireTimer >= 1f / fireRate)
         {
             GameObject cannonball = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
-            cannonball.GetComponent<Rigidbody>().linearVelocity = new Vector3(0, 0, -projectileSpeed);
+            cannonball.GetComponent<Rigidbody>().linearVelocity = new Vector3(0, 0, -(projectileSpeed * GameManager.Instance.projectileSpeedMult));
             fireTimer = 0f;
         }
     }
