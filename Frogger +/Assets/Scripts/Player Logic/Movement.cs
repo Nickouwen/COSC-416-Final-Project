@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour
     private bool onRightWall = false;
     public GameObject player;
     private float directionTurn = 0;
+    private bool isPlayerDead = false;
+    private bool isGameOver = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,22 +23,28 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isPlayerMoving){
+        isPlayerDead = PlayerHeadController.Instance.isPlayerDead();
+        isGameOver = GameManager.Instance.IsGameOver;
+        if (!isPlayerMoving && !isPlayerDead && !isGameOver){
             if(InputManager.Instance.MoveUp)
             {
+                AudioManager.Instance.PlayJump();
                 MovePlayer(new Vector3(0, 0, moveAmount));
             }
             if(InputManager.Instance.MoveDown)
             {
+                AudioManager.Instance.PlayJump();
                 MovePlayer(new Vector3(0, 0, -moveAmount));
             }
             if(InputManager.Instance.MoveRight && !onRightWall)
             {
+                AudioManager.Instance.PlayJump();
                 onLeftWall = false;
                 MovePlayer(new Vector3(moveAmount, 0, 0));
             }
             if(InputManager.Instance.MoveLeft && !onLeftWall)
             {
+                AudioManager.Instance.PlayJump();
                 onRightWall = false;
                 MovePlayer(new Vector3(-moveAmount, 0, 0));
             }
@@ -50,12 +58,14 @@ public class Movement : MonoBehaviour
         {
             PlayerHeadController deadBodyController = player.GetComponent<PlayerHeadController>();
             deadBodyController.sinkBody();
+            AudioManager.Instance.PlayWaterSplash();
         }
         else if (collision.gameObject.CompareTag("EndGate"))
         {
             Destroy(collision.gameObject);
             GameManager.Instance.IncrementScore();
             GameManager.Instance.Respawn(0);
+            AudioManager.Instance.PlayLevelWin();
         }
         else if (collision.gameObject.CompareTag("Left-Wall"))
         {

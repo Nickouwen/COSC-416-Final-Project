@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 public class PlayerHeadController : MonoBehaviour
 {
+    public static PlayerHeadController Instance;
     public GameObject headPrefab;
     public Transform headAttachPoint;
     public float respawnDelay = 2.0f;
@@ -11,10 +12,18 @@ public class PlayerHeadController : MonoBehaviour
     public Transform bodyAttachPoint;
     private bool isDead = false;
 
+    void Awake()
+    {
+        Instance = this;
+    }
     public void PopHead()
-    {      
+    { 
+        if(isDead) return;
+        isDead = true;     
         realHead.SetActive(false);
         GameObject detachedHead = Instantiate(headPrefab, headAttachPoint.position, headAttachPoint.rotation);
+
+        AudioManager.Instance.PlayTurretHit();
 
         Rigidbody rb = detachedHead.GetComponent<Rigidbody>();
         rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
@@ -27,9 +36,13 @@ public class PlayerHeadController : MonoBehaviour
 
     public void throwBody(int direction)
     {
+        if(isDead) return;
+        isDead = true;
         body.GetChild(0).GetComponent<SkinnedMeshRenderer>().enabled = false;
         body.GetChild(1).GetComponent<SkinnedMeshRenderer>().enabled = false;
         GameObject detachedBody = Instantiate(bodyPrefab, bodyAttachPoint.position, bodyAttachPoint.rotation);
+
+        AudioManager.Instance.PlayCarHit();
 
         Rigidbody rb = detachedBody.GetComponent<Rigidbody>();
         rb.AddForce(direction * 5.0f, 1f, 0, ForceMode.Impulse);
@@ -70,5 +83,10 @@ public class PlayerHeadController : MonoBehaviour
     public void Reset()
     {
         realHead.SetActive(true);
+    }
+
+    public bool isPlayerDead()
+    {
+        return isDead;
     }
 }

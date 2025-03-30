@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
             if (!gameOverMenu.activeSelf)
             {
                 EnableMenu(gameOverMenu);
+                AudioManager.Instance.PlayGameOver();
             }
         }
     }
@@ -150,7 +151,6 @@ public class GameManager : MonoBehaviour
             GameObject oldPlayer = GameObject.FindGameObjectWithTag("Player");
             GameObject newPlayer = Instantiate(playerPrefab, playerSpawn.position, playerSpawn.rotation);
             player = newPlayer;
-            Destroy(oldPlayer);
             PlayerHeadController headController = player.GetComponent<PlayerHeadController>();
             headController.Reset();
             
@@ -159,6 +159,7 @@ public class GameManager : MonoBehaviour
             {
                 TriggerGameOver();
             }
+            Destroy(oldPlayer);
         }
     }
 
