@@ -150,7 +150,6 @@ public class GameManager : MonoBehaviour
             GameObject oldPlayer = GameObject.FindGameObjectWithTag("Player");
             GameObject newPlayer = Instantiate(playerPrefab, playerSpawn.position, playerSpawn.rotation);
             player = newPlayer;
-            Destroy(oldPlayer);
             PlayerHeadController headController = player.GetComponent<PlayerHeadController>();
             headController.Reset();
             
@@ -159,6 +158,7 @@ public class GameManager : MonoBehaviour
             {
                 TriggerGameOver();
             }
+            Destroy(oldPlayer);
         }
     }
 
@@ -196,6 +196,7 @@ public class GameManager : MonoBehaviour
     public void TriggerGameOver()
     {
         gameOver = true;
+        AudioManager.Instance.PlayGameOver();
     }
 
     public void UpdateBoatSpeed()
