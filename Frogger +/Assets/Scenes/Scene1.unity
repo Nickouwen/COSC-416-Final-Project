@@ -9357,7 +9357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7989214263151924363, guid: ce1cc46015ab44b589789908d4a9a68f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.160576
+      value: -25.1
       objectReference: {fileID: 0}
     - target: {fileID: 7989214263151924363, guid: ce1cc46015ab44b589789908d4a9a68f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9418,7 +9418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6834478691044534620, guid: eacdb5fe7e96347809806afa467ffc8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.839424
+      value: 23.2
       objectReference: {fileID: 0}
     - target: {fileID: 6834478691044534620, guid: eacdb5fe7e96347809806afa467ffc8e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9475,6 +9475,10 @@ PrefabInstance:
     - target: {fileID: 7034150663143064918, guid: eacdb5fe7e96347809806afa467ffc8e, type: 3}
       propertyPath: m_Name
       value: Right-Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7034150663143064918, guid: eacdb5fe7e96347809806afa467ffc8e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4554535918963775180, guid: eacdb5fe7e96347809806afa467ffc8e, type: 3}
@@ -10608,8 +10612,6 @@ SceneRoots:
   - {fileID: 714212879}
   - {fileID: 2140135398}
   - {fileID: 1103907537}
-  - {fileID: 777517010}
-  - {fileID: 868814353}
   - {fileID: 8912363166156022938}
   - {fileID: 8162216510775209152}
   - {fileID: 1081613933}
