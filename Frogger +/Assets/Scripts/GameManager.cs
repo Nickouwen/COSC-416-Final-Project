@@ -84,7 +84,6 @@ public class GameManager : MonoBehaviour
             if (!gameOverMenu.activeSelf)
             {
                 EnableMenu(gameOverMenu);
-                AudioManager.Instance.PlayGameOver();
             }
         }
     }
@@ -197,6 +196,7 @@ public class GameManager : MonoBehaviour
     public void TriggerGameOver()
     {
         gameOver = true;
+        AudioManager.Instance.PlayGameOver();
     }
 
     public void UpdateBoatSpeed()

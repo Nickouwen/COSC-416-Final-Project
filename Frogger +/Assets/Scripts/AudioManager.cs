@@ -5,7 +5,7 @@ public class AudioManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static AudioManager Instance;
     public AudioSource src;
-    public AudioClip splash, carHit, turretHit, gameOver, levelWin, jump;
+    public AudioClip splash, carHit, turretHit, gameOver, levelWin, jump, buttonClick, sliderChange;
 
     public void Awake()
     {
@@ -63,6 +63,18 @@ public class AudioManager : MonoBehaviour
     public void PlayJump()
     {
         src.clip = jump;
+        src.Play();
+    }
+
+    public void buttonClickSound()
+    {
+        src.clip = buttonClick;
+        src.Play();
+    }
+
+    public void sliderChangeSound()
+    {
+        src.clip = sliderChange;
         src.Play();
     }
 
