@@ -47,7 +47,7 @@ public class ObstacleController : MonoBehaviour
             Physics.IgnoreCollision(leftWall.GetComponent<Collider>(), obstacle.GetComponent<Collider>());
             Physics.IgnoreCollision(rightWall.GetComponent<Collider>(), obstacle.GetComponent<Collider>());
             obstacle.GetComponent<Rigidbody>().linearVelocity = new Vector3(speed, 0, 0);
-            Destroy(obstacle, 30);
+            Destroy(obstacle, 10);
             spawnTimer = 0f;
         }
     }

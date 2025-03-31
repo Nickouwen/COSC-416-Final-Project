@@ -4,6 +4,13 @@ using System.Collections;
 
 public class ProjectileController : MonoBehaviour
 {
+    public float spinSpeed = 90f;
+
+    private void Update()
+    {
+        transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime);
+        transform.Rotate(Vector3.forward, spinSpeed/2 *  Time.deltaTime);
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Shield"))
