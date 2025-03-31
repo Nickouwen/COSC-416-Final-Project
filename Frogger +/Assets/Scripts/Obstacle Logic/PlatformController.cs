@@ -47,7 +47,7 @@ public class PlatformController : MonoBehaviour
             Physics.IgnoreCollision(leftWall.GetComponent<Collider>(), platform.GetComponent<Collider>());
             Physics.IgnoreCollision(rightWall.GetComponent<Collider>(), platform.GetComponent<Collider>());
             platform.GetComponent<Rigidbody>().linearVelocity = new Vector3(speed, 0, 0);
-            Destroy(platform, 30);
+            Destroy(platform, 10);
             spawnTimer = 0f;
         }
 

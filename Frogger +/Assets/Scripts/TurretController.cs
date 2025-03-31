@@ -3,10 +3,10 @@ using UnityEngine;
 public class TurretController : MonoBehaviour
 {
     [SerializeField] private GameObject turret;
-    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private GameObject[] projectilePrefabs;
     [SerializeField] private Transform projectileSpawn;
-    public float maxFireRate = 4f;
-    public float minFireRate = 1.2f;
+    public float maxFireRate = 0.4f;
+    public float minFireRate = 0.1f;
     public float projectileSpeed = 10f;
 
     private float fireTimer;
@@ -22,10 +22,11 @@ public class TurretController : MonoBehaviour
 
     private void Fire()
     {
+        int randInt = Random.Range(0, projectilePrefabs.Length);
         fireTimer += Time.deltaTime;
         if (fireTimer >= 1f / fireRate)
         {
-            GameObject cannonball = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
+            GameObject cannonball = Instantiate(projectilePrefabs[randInt], projectileSpawn.position, projectileSpawn.rotation);
             cannonball.GetComponent<Rigidbody>().linearVelocity = new Vector3(0, 0, -(projectileSpeed * GameManager.Instance.projectileSpeedMult));
             fireTimer = 0f;
         }
