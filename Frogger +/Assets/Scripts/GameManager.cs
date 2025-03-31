@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour
         obstacleSlider.value = obstacleSpeed;
         projectileSlider.value = projectileSpeedMult;
 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayBackgroundMusic();
+        }
+
         UpdateBoatSpeed();
         UpdateObstacleSpeed();
         UpdateProjectileMult();
@@ -164,7 +169,7 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        Respawn(0);
+        Respawn(1);
         lives = 3;
         GameObject[] platforms = GameObject.FindGameObjectsWithTag("ship");
         foreach (GameObject platform in platforms)
