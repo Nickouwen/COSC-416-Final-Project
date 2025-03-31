@@ -8,6 +8,7 @@ public class ObstacleController : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float spawnRate;
     [SerializeField] private bool rightToLeft;
+    private int direction;
 
     [SerializeField] private int speed;
     private float spawnTimer;
@@ -21,6 +22,17 @@ public class ObstacleController : MonoBehaviour
             else speed = GameManager.Instance.obstacleSpeed;
         }
         SpawnObstacle();
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerHeadController deadBodyController = collision.gameObject.GetComponent<PlayerHeadController>();
+            direction = rightToLeft ? 1 : -1;
+            deadBodyController.throwBody(direction);
+            Debug.Log("Car hit player!");
+        }
     }
 
     // Spawns obstacles at designated spawn points but gives a random car obstacle out of the array

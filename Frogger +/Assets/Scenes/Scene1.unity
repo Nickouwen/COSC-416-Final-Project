@@ -1019,18 +1019,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8935047261283129168, guid: c63d6632f0c39428494019eb4edc34c1, type: 3}
-      propertyPath: m_Mass
-      value: 0.0000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 8991182436087501381, guid: c63d6632f0c39428494019eb4edc34c1, type: 3}
-      propertyPath: m_AnimatePhysics
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8991182436087501381, guid: c63d6632f0c39428494019eb4edc34c1, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 4189349489945778573, guid: c63d6632f0c39428494019eb4edc34c1, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 1866144871}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9336,16 +9328,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2864003842029426362, guid: ce1cc46015ab44b589789908d4a9a68f, type: 3}
+      propertyPath: m_Size.x
+      value: 8.404854
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864003842029426362, guid: ce1cc46015ab44b589789908d4a9a68f, type: 3}
       propertyPath: m_Size.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2864003842029426362, guid: ce1cc46015ab44b589789908d4a9a68f, type: 3}
+      propertyPath: m_Center.x
+      value: -2.297573
       objectReference: {fileID: 0}
     - target: {fileID: 2864003842029426362, guid: ce1cc46015ab44b589789908d4a9a68f, type: 3}
       propertyPath: m_Center.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2864003842029426362, guid: ce1cc46015ab44b589789908d4a9a68f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2992607550345832551, guid: ce1cc46015ab44b589789908d4a9a68f, type: 3}
       propertyPath: m_Name
       value: Left-Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992607550345832551, guid: ce1cc46015ab44b589789908d4a9a68f, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7989214263151924363, guid: ce1cc46015ab44b589789908d4a9a68f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9446,6 +9454,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6834478691044534620, guid: eacdb5fe7e96347809806afa467ffc8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6840319401002811111, guid: eacdb5fe7e96347809806afa467ffc8e, type: 3}
+      propertyPath: m_Size.x
+      value: 8.745861
+      objectReference: {fileID: 0}
+    - target: {fileID: 6840319401002811111, guid: eacdb5fe7e96347809806afa467ffc8e, type: 3}
+      propertyPath: m_Center.x
+      value: 2.178934
+      objectReference: {fileID: 0}
+    - target: {fileID: 6840319401002811111, guid: eacdb5fe7e96347809806afa467ffc8e, type: 3}
+      propertyPath: m_Center.y
+      value: 0.011360789
+      objectReference: {fileID: 0}
+    - target: {fileID: 6840319401002811111, guid: eacdb5fe7e96347809806afa467ffc8e, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7034150663143064918, guid: eacdb5fe7e96347809806afa467ffc8e, type: 3}
@@ -10584,6 +10608,8 @@ SceneRoots:
   - {fileID: 714212879}
   - {fileID: 2140135398}
   - {fileID: 1103907537}
+  - {fileID: 777517010}
+  - {fileID: 868814353}
   - {fileID: 8912363166156022938}
   - {fileID: 8162216510775209152}
   - {fileID: 1081613933}

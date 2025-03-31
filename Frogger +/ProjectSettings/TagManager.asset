@@ -16,6 +16,12 @@ TagManager:
   - Turret
   - EndGate
   - Spawn
+  - Projectile
+  - PlatformCollider
+  - shipTop
+  - PlayerHead
+  - DetachedHead
+  - DetachedBody
   layers:
   - Default
   - TransparentFX
@@ -23,10 +29,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - ship
+  - shipTop
+  - Wall
+  - Player
   - 
   - 
   - 
