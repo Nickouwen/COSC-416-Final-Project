@@ -5,6 +5,8 @@ public class AudioManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public static AudioManager Instance;
     public AudioSource src;
+    public AudioSource backgroundMusicSource;
+    public AudioClip backgroundMusic;
     public AudioClip splash, carHit, turretHit, gameOver, levelWin, jump, buttonClick, sliderChange;
 
     public void Awake()
@@ -27,7 +29,7 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        ReduceMusicVolume();
     }
 
     public void PlayWaterSplash()
@@ -76,6 +78,16 @@ public class AudioManager : MonoBehaviour
     {
         src.clip = sliderChange;
         src.Play();
+    }
+
+    public void ReduceMusicVolume()
+    {
+        backgroundMusicSource.volume -= Time.deltaTime / 100;
+    }
+
+    public void PlayBackgroundMusic()
+    {
+        backgroundMusicSource.PlayOneShot(backgroundMusic);
     }
 
 }
