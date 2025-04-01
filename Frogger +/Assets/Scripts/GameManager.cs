@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour
         menu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Debug.Log("Enabled Menu");
     }
 
     public void DisableMenu(GameObject menu)
@@ -118,6 +119,7 @@ public class GameManager : MonoBehaviour
         menu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Debug.Log("Disabled Menu");
     }
 
     public void DisableNestedMenu(GameObject menu)
